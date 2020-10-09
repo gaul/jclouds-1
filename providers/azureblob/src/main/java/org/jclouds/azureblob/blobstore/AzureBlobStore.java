@@ -241,6 +241,8 @@ public class AzureBlobStore extends BaseBlobStore {
       }
       Tier tier = blob.getMetadata().getTier();
       if (tier != Tier.STANDARD) {
+         // TODO: API 2019-02-22 allows setting tier within putBlob:
+         // https://docs.microsoft.com/en-us/rest/api/storageservices/version-2019-02-02
          sync.setBlobTier(container, blob.getMetadata().getName(), AccessTier.fromTier(tier));
       }
       return eTag;

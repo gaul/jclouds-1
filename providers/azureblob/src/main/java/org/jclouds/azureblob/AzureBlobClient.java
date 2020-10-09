@@ -321,6 +321,7 @@ public interface AzureBlobClient extends Closeable {
     * blob.
     * <p/>
     * <h4>Remarks</h4>
+    // TODO: now 5 GB
     * The maximum upload size for a blob is 256 MB. If your blob is larger than 256 MB, you may upload
     * it as a set of blocks. For more information, see the Put Block and Put Block List operations.
     * <p/>

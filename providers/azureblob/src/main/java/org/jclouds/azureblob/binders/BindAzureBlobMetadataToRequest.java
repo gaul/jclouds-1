@@ -70,6 +70,8 @@ public class BindAzureBlobMetadataToRequest implements Binder {
          headers.put("x-ms-blob-content-disposition", contentDisposition);
       }
 
+      // TODO: tier
+
       switch (blob.getProperties().getType()) {
       case PAGE_BLOB:
          headers.put(HttpHeaders.CONTENT_LENGTH, "0");
@@ -79,6 +81,7 @@ public class BindAzureBlobMetadataToRequest implements Binder {
          // see https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs
          // see AzureBlobApiMetadata#version (current API version used is 2017-04-17)
          checkArgument(
+               // TODO: now 5 GB
                checkNotNull(blob.getPayload().getContentMetadata().getContentLength(), "blob.getContentLength()") <= 256L * 1024 * 1024,
                "maximum size for put Blob is 256MB");
          break;
