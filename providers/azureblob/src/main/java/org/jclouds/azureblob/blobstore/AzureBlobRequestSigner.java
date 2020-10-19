@@ -141,7 +141,12 @@ public class AzureBlobRequestSigner implements BlobRequestSigner {
             .addQueryParam("sv", API_VERSION)
             .addQueryParam("se", iso8601)
             .addQueryParam("sr", "b")  // blob resource
-            .addQueryParam("sp", signedPermission);  // permission
+            .addQueryParam("sp", signedPermission)  // permission
+            .addQueryParam("skoid", ...)  // signedObjectId
+            .addQueryParam("sktid", ...)  // signedTenantId
+            .addQueryParam("ske", ...)  // signedKeyExpiryTime
+            .addQueryParam("sks", "b");  // signedKeyService
+            // TODO: more: https://docs.microsoft.com/en-us/rest/api/storageservices/create-user-delegation-sas
       request = setHeaders(request, method, options, contentLength, contentType);
       String stringToSign =
             signedPermission + "\n" +  // signedpermission
